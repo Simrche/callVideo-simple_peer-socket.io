@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <title>Test Socket</title>
+    </head>
+
+    <body>
+
+        <section id="container">
+            <div id="left">
+                <h2>Vidéo</h2>
+                <div id="containerVideo">
+                    <video id="localVideo" width="100%"></video>
+                </div>
+                <button id="joinCallButton">Join the call</button>
+            </div>
+            <div id="middle">
+                <h2>Chat</h2>
+                <div id="containerChat">
+                    <ul id="chat">
+                        
+                    </ul>
+                    <div id="inputSend">
+                        <input type="text" id="message">
+                        <button onclick="send()">💌</button>
+                    </div>
+                </div>
+            </div>
+            <div id="right">
+                <h2>Online</h2>
+                <ul id="online">
+                    
+                </ul>
+            </div>
+        </section>
+
+        <script src="socket.io/socket.io.js"></script>
+        <script src="simple-peer/simplepeer.min.js"></script>
+        <script src="main2.js"></script>
+
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                font-family: Poppins;
+            }
+
+            h2 {
+                color: whitesmoke;
+                margin-top: 12px;
+            }
+
+            #container {
+                display: flex;
+                background-color: rgb(110, 110, 110);
+                height: 100vh;
+            }
+
+            #left {
+                width: 15%;
+                background-color: rgb(77, 76, 76);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            #left h2 {
+                text-align: center;
+            }
+
+            #containerVideo{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #joinCallButton {
+                border: none;
+                background-color: rgb(77, 77, 77);
+                border: solid black 2px;
+                margin: 0 auto 24px auto;
+                height: 40px;
+                font-size: 16px;
+                width: 85%;
+                color: white;
+                cursor: pointer;
+            }
+
+            #joinCallButton:hover {
+                background-color: rgb(189, 189, 189);
+                color:black;
+                transition: 1s;
+            }
+
+            #middle {
+                width: 75%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            #middle h2 {
+                margin-left: 50px;
+            }
+
+            #middle input {
+                margin-left: 50px;
+            }
+
+            #right {
+                width: 10%;
+                background-color: rgb(77, 76, 76);
+            }
+
+            #right h2 {
+                text-align: center;
+            }
+
+            #inputSend {
+                margin-bottom: 25px;
+            }
+
+            #inputSend button, #inputSend input {
+                border: none;   
+                background-color: rgb(77, 76, 76);             
+            }
+
+            #inputSend input {
+                height: 40px;
+                padding: 4px 20px 6px 20px;
+                font-size: 16px;
+                width: 85%;
+                color: white;
+            }
+
+            #inputSend button {
+                height: 50px;
+                width: 50px;
+            }
+
+            #chat {
+                padding-bottom: 16px;
+            }
+
+            #chat li {
+                margin-left: 70px;
+                color: whitesmoke;
+            }
+
+            input:focus {
+                outline:  none;
+            }
+
+            #online li {
+                margin-top: 12px;
+                color: white;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                margin-right: 24px;
+                margin-left: 12px;
+            }
+
+            .ano {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: solid black 1px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .ita {
+                font-style: italic;
+                opacity: 50%;
+            }
+
+            .video {
+                width: 100%;
+            }
+        </style>
+    </body>
+</html>
