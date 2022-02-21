@@ -7,7 +7,7 @@ Node.js/Simple-peer/Socket.io
 git clone git@github.com:Simrche/callVideo-simple_peer-soket.io.git
 ```
 
-## Enter the project
+## Enter in the folder project
 ```
 cd callVideo-simple_peer-soket.io
 ```
@@ -17,7 +17,7 @@ cd callVideo-simple_peer-soket.io
 npm install
 ```
 
-### Start the project
+## Start the project
 ```
 nodemon server.js
 ```

@@ -18,13 +18,15 @@ app.use(express.static(path.join(__dirname, 'node_modules')))
 
 io.on('connection', function(socket) {
 
-    io.emit('connection', socket.id)
+    console.log(socket.id + " join")
+    io.emit('newUser', socket.id)
     peers[socket.id] = socket
     online.push(socket.id)
     io.emit("online", online)
 
     for(let id in peers) {
         if(id === socket.id) continue
+        console.log('sending init receive to ' + socket.id)
         peers[id].emit('initReceive', socket.id)
     }
 

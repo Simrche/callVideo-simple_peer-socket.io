@@ -18,7 +18,7 @@ const configuration = {
 }
 
 // Enable the camera
-navigator.mediaDevices.getUserMedia({audio : true, video: true}).then(stream => {
+navigator.mediaDevices.getUserMedia({audio : true, video:false}).then(stream => {
 
     localVideo.srcObject = stream;
     localStream = stream;
@@ -41,18 +41,11 @@ function init() {
     })
 
     // Logs Connection et Deconnection ---------------------------------------------------------------------------------------------------
-    socket.on('connection', function(id) {
+    socket.on('newUser', function(id) {
         console.log("Guest_" + fourLetter(id) + " join")
         let li = document.createElement('li')
         li.innerHTML = "<span class='ita'>Guest_" + fourLetter(id) + " join</span>"
         document.getElementById('chat').appendChild(li)
-
-        // Asking all other clients to setup the peer connection receiver
-        for(let id in peers) {
-            if(id === socket.id) continue
-            console.log('sending init receive to ' + socket.id)
-            peers[id].emit('initReceive', socket.id)
-        }
     })
 
     socket.on('initReceive', socket_id => {
@@ -64,6 +57,11 @@ function init() {
     socket.on('initSend', socket_id => {
         console.log('INIT SEND ' + socket_id)
         addPeer(socket_id, true)
+    })
+
+    socket.on('removePeer', socket_id => {
+        console.log('removing peer ' + socket_id)
+        removePeer(socket_id)
     })
 
     socket.on('aurevoir', function(id) {
